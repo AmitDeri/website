@@ -112,33 +112,43 @@ document.addEventListener('DOMContentLoaded', function () {
         observer.observe(element);
     });
 
-    // Optional: Add click-to-open functionality for dropdowns on mobile
+    // Mobile Menu Toggle
+    const menuToggle = document.getElementById('mobile-menu');
+    const navMenu = document.querySelector('.nav-menu');
+
+    menuToggle.addEventListener('click', function() {
+        navMenu.classList.toggle('active');
+        this.classList.toggle('active');
+    });
+
+    // Dropdown Toggle for Mobile
     navLinks.forEach(function(navLink) {
         navLink.addEventListener('click', function(e) {
-            e.preventDefault(); // Prevent default link behavior
-            const dropdown = this.nextElementSibling;
+            if (window.innerWidth < 768) {
+                e.preventDefault(); // Prevent default link behavior
+                const dropdown = this.nextElementSibling;
 
-            // Toggle the clicked dropdown
-            if (dropdown.style.display === 'block') {
-                dropdown.style.display = 'none';
-            } else {
-                // Close other open dropdowns
-                document.querySelectorAll('.dropdown').forEach(function(dd) {
-                    dd.style.display = 'none';
-                });
-                dropdown.style.display = 'block';
+                // Toggle the clicked dropdown
+                if (dropdown && dropdown.classList.contains('dropdown')) {
+                    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+                }
             }
         });
     });
 
     // Close dropdowns when clicking outside
     document.addEventListener('click', function(e) {
-        const isNavLink = e.target.matches('.nav-link');
-        const isDropdownItem = e.target.closest('.dropdown');
-        if (!isNavLink && !isDropdownItem) {
-            document.querySelectorAll('.dropdown').forEach(function(dd) {
-                dd.style.display = 'none';
-            });
+        if (window.innerWidth < 768) {
+            const isNavLink = e.target.matches('.nav-link');
+            const isDropdownItem = e.target.closest('.dropdown');
+            const isMenuToggle = e.target.closest('#mobile-menu');
+            if (!isNavLink && !isDropdownItem && !isMenuToggle) {
+                document.querySelectorAll('.dropdown').forEach(function(dd) {
+                    dd.style.display = 'none';
+                });
+                navMenu.classList.remove('active');
+                menuToggle.classList.remove('active');
+            }
         }
     });
 });
