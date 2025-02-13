@@ -170,7 +170,7 @@ img {
     min-width: 160px;
     top: 100%;
     left: 0;
-    z-index: 1;
+    z-index: 1000;
     border: 1px solid #a3e4d7; /* Border matching navbar background */
     border-radius: 4px;
     opacity: 0;
@@ -206,9 +206,9 @@ img {
 }
 
 .navbar .nav-item:hover .dropdown {
-    display: block;
-    opacity: 1;
-    visibility: visible;
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 .navbar .dropdown {
