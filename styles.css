@@ -26,7 +26,6 @@ img {
 /* Navbar Styles */
 .navbar {
     background-color: #ffffff;
-    position: fixed;
     width: 100%;
     z-index: 1000;
     border-bottom: 1px solid #e0e0e0;
@@ -313,4 +312,49 @@ footer p {
 
 .highlighted-section {
     animation: glow 2s ease-out;
+}
+
+/* Desktop styles */
+@media (min-width: 769px) {
+    .navbar {
+        position: static;
+    }
+    
+    .hero {
+        margin-top: 0; /* Remove margin since navbar is not fixed anymore */
+    }
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    .navbar {
+        position: fixed;
+    }
+    
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #ffffff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-menu.active {
+        display: block;
+    }
+
+    /* Style for the active hamburger */
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
+    }
 }
