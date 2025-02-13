@@ -1,11 +1,12 @@
 /* General Styles */
 :root {
-    --primary-color: #2196F3;    /* Vibrant blue */
-    --secondary-color: #00E676;  /* Bright green */
-    --accent-color: #FF4081;     /* Pink accent */
+    --primary-color: #7EC8B1;    /* Soft pastel green */
+    --secondary-color: #89CFF0;  /* Baby blue */
+    --accent-color: #A7D8DE;     /* Soft cyan */
     --dark-color: #2d3436;
     --light-color: #ffffff;
-    --gradient-bg: linear-gradient(135deg, #2196F3, #00E676);
+    --gradient-bg: linear-gradient(135deg, #7EC8B1, #89CFF0);
+    --hover-gradient: linear-gradient(135deg, #89CFF0, #7EC8B1);
 }
 
 * {
@@ -178,7 +179,7 @@ body {
 /* About Me Section */
 .content {
     padding: 80px 0;
-    background-color: var(--light-color);
+    background-color: #f8fafb;
     position: relative;
 }
 
@@ -213,7 +214,7 @@ body {
 /* Contact Section */
 .contact {
     padding: 80px 0;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    background: linear-gradient(135deg, #f8fafb 0%, #e9f5f2 100%);
     text-align: center;
 }
 
@@ -344,6 +345,13 @@ a, button {
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
+/* Update hover states */
+.contact .contact-button:hover,
+.cv-button:hover,
+.skill-link:hover {
+    background: var(--hover-gradient);
+}
+
 /* Modal Styles */
 .modal {
     display: none;
@@ -422,7 +430,7 @@ a, button {
 
 .skills-list li::before {
     content: '•';
-    color: var(--secondary-color);
+    color: var(--primary-color);
     position: absolute;
     left: 0;
     font-size: 1.5em;
@@ -439,3 +447,4 @@ a, button {
         font-size: 1em;
     }
 }
+
