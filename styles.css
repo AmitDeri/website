@@ -1,0 +1,356 @@
+/* General Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    background-color: #e0f7e9; /* Light pastel green background */
+}
+
+h1, h2 {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Header Styles */
+.header {
+    position: relative;
+    width: 100%;
+    background-color: #d0f0fd; /* Baby blue pastel */
+    transition: all 0.5s ease;
+    overflow: hidden;
+}
+
+.header.shrink {
+    padding: 10px;
+}
+
+.profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    will-change: transform, opacity;
+}
+
+.header.shrink .profile img {
+    width: 100px;
+    height: 100px;
+}
+
+/* Info Styles */
+.info {
+    text-align: center;
+    margin-top: 20px;
+    transition: all 0.5s ease;
+}
+
+.header.shrink .info {
+    margin-top: 10px;
+}
+
+#name {
+    font-size: 2.5em;
+    color: #2d3436;
+    transition: all 0.5s ease;
+    will-change: font-size, color;
+}
+
+.header.shrink #name {
+    font-size: 1.8em;
+}
+
+.title {
+    font-size: 1.5em;
+    color: #636e72;
+    margin-top: 10px;
+    transition: opacity 0.3s ease-out;
+    will-change: opacity;
+}
+
+.header.shrink .title {
+    font-size: 1.2em;
+}
+
+.links {
+    margin-top: 20px;
+    opacity: 1;
+    transition: opacity 0.3s ease-out;
+    will-change: opacity;
+}
+
+.header.shrink .links {
+    opacity: 0;
+}
+
+.links a {
+    color: #2d3436;
+    font-size: 1.5em;
+    margin: 0 10px;
+    display: inline-block;
+    transition: transform 0.3s, background 0.3s;
+}
+
+.links img {
+    width: 32px;
+    height: 32px;
+    vertical-align: middle;
+}
+
+/* Icons Hover Effect */
+.links a:hover {
+    transform: translateY(-5px);
+}
+
+.links a:hover img {
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: #333;
+    overflow: hidden;
+}
+
+.navbar .nav-menu {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+}
+
+.navbar .nav-item {
+    position: relative;
+}
+
+.navbar .nav-link {
+    display: block;
+    color: #f2f2f2;
+    padding: 14px 20px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.navbar .nav-link:hover {
+    background-color: #575757;
+}
+
+.navbar .dropdown {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+}
+
+.navbar .dropdown li {
+    width: 100%;
+}
+
+.navbar .dropdown li a {
+    color: #333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background 0.3s, color 0.3s;
+}
+
+.navbar .dropdown li a:hover {
+    background-color: #f1f1f1;
+}
+
+.navbar .nav-item:hover .dropdown {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+}
+
+.navbar .dropdown {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Content Styles */
+.content {
+    padding: 50px 20px;
+    text-align: center;
+    background-color: #e9fcef; /* Very light green */
+    color: #2d3436;
+}
+
+.content h2, .content p {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s forwards;
+}
+
+.cv-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 25px;
+    background: #a3e4d7; /* Pastel green */
+    color: #2d3436;
+    border-radius: 5px;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.cv-button:hover {
+    background: #81d4b2; /* Slightly darker pastel green */
+    transform: translateY(-3px);
+}
+
+/* CV Button Ripple Effect */
+.cv-button {
+    position: relative;
+    overflow: hidden;
+}
+
+.cv-button::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+}
+
+.cv-button:hover::after {
+    width: 200px;
+    height: 200px;
+    opacity: 1;
+    transition: all 0.6s ease;
+}
+
+/* Name Styling for Mobile */
+.name-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #e0f7e9; /* Match the body background */
+    color: #2d3436;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 1.8em;
+    opacity: 1;
+    z-index: 10;
+    transition: all 0.5s ease;
+    will-change: transform, opacity;
+}
+
+/* Media Queries */
+@media (min-width: 768px) {
+    .header .container {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        padding: 40px;
+    }
+
+    .profile {
+        margin-right: 40px;
+    }
+
+    .profile img {
+        width: 500px;
+        height: 500px;
+    }
+
+    .header.shrink .profile img {
+        width: 250px;
+        height: 250px;
+    }
+
+    .info {
+        text-align: left;
+        margin-top: 0;
+    }
+
+    #name {
+        font-size: 3.5em;
+    }
+
+    .title {
+        font-size: 2em;
+    }
+
+    .header.shrink #name {
+        font-size: 2.5em;
+    }
+
+    .header.shrink .title {
+        font-size: 1.8em;
+    }
+
+    main {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: center;
+        padding: 50px 20px;
+    }
+
+    /* Ensure content starts at full opacity and position */
+    main .content {
+        text-align: left;
+        padding: 0 20px;
+        max-width: 600px;
+        opacity: 1;
+        transform: none;
+    }
+
+    /* Ensure headings and paragraphs are visible and not animated */
+    main .content h2,
+    main .content p {
+        opacity: 1;
+        transform: none;
+        animation: none;
+    }
+
+    /* Ensure name is not fixed on desktop */
+    .name-fixed {
+        position: static;
+        background: none;
+        padding: 0;
+    }
+}
+
+/* Fade-In Animation */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
