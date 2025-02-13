@@ -129,8 +129,9 @@ img {
 
 /* Navbar Styles */
 .navbar {
-    background-color: #333;
+    background-color: #a3e4d7; /* Match the pastel green used in the CV button */
     overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .navbar .nav-menu {
@@ -146,30 +147,42 @@ img {
 
 .navbar .nav-link {
     display: block;
-    color: #f2f2f2;
+    color: #2d3436; /* Dark gray for contrast */
     padding: 14px 20px;
     text-decoration: none;
     cursor: pointer;
-    transition: background 0.3s;
+    font-weight: 500;
+    transition: background 0.3s, color 0.3s;
 }
 
 .navbar .nav-link:hover {
-    background-color: #575757;
+    background-color: #81d4b2; /* Slightly darker pastel green on hover */
+    color: #ffffff;
 }
 
 .navbar .dropdown {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
+    background-color: #d0f0fd; /* Baby blue pastel for dropdown background */
     min-width: 160px;
     top: 100%;
     left: 0;
     z-index: 1;
-    border: 1px solid #ddd;
+    border: 1px solid #a3e4d7; /* Border matching navbar background */
     border-radius: 4px;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.navbar .dropdown::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    border-width: 0 10px 10px 10px;
+    border-style: solid;
+    border-color: transparent transparent #d0f0fd transparent;
 }
 
 .navbar .dropdown li {
@@ -177,7 +190,7 @@ img {
 }
 
 .navbar .dropdown li a {
-    color: #333;
+    color: #2d3436; /* Dark gray text */
     padding: 12px 16px;
     text-decoration: none;
     display: block;
@@ -185,7 +198,8 @@ img {
 }
 
 .navbar .dropdown li a:hover {
-    background-color: #f1f1f1;
+    background-color: #a3d0e4; /* Light pastel blue on hover */
+    color: #ffffff;
 }
 
 .navbar .nav-item:hover .dropdown {
@@ -195,7 +209,36 @@ img {
 }
 
 .navbar .dropdown {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Adjustments for Navbar */
+@media screen and (max-width: 768px) {
+    .navbar .nav-menu {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .navbar .nav-link {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .navbar .nav-item {
+        width: 100%;
+    }
+
+    .navbar .dropdown {
+        position: relative;
+        top: 0;
+        border: none;
+        box-shadow: none;
+        background-color: #e9fcef; /* Very light green to match content background */
+    }
+
+    .navbar .dropdown::before {
+        display: none;
+    }
 }
 
 /* Content Styles */
