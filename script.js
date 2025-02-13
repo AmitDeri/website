@@ -1,11 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const header = document.querySelector('.navbar');
-    const hero = document.querySelector('.hero');
-    const scrollOffset = 60; // Height of the fixed navbar
     const menuToggle = document.getElementById('mobile-menu');
     const navMenu = document.getElementById('nav-menu');
     const navItems = document.querySelectorAll('.nav-item');
     const scrollLinks = document.querySelectorAll('.scroll-link');
+    const scrollOffset = 60;
 
     // Mobile Menu Toggle
     menuToggle.addEventListener('click', function () {
@@ -13,17 +11,39 @@ document.addEventListener('DOMContentLoaded', function () {
         this.classList.toggle('active');
     });
 
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function (e) {
+        if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+            navMenu.classList.remove('active');
+            menuToggle.classList.remove('active');
+        }
+    });
+
     // Dropdown Menu Toggle for Mobile
     navItems.forEach(function (navItem) {
         const navLink = navItem.querySelector('.nav-link');
-        navLink.addEventListener('click', function () {
-            if (window.innerWidth <= 768) {
-                navItem.classList.toggle('open');
-            }
-        });
+        const dropdown = navItem.querySelector('.dropdown');
+
+        if (dropdown) {
+            navLink.addEventListener('click', function (e) {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    
+                    // Close all other dropdowns
+                    navItems.forEach(function (item) {
+                        if (item !== navItem) {
+                            item.classList.remove('open');
+                        }
+                    });
+                    
+                    // Toggle current dropdown
+                    navItem.classList.toggle('open');
+                }
+            });
+        }
     });
 
-    // Smooth scrolling for anchor links and highlight section
+    // Smooth scrolling for anchor links
     scrollLinks.forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -35,7 +55,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     top: target.offsetTop - scrollOffset,
                     behavior: 'smooth'
                 });
-                // Add highlight effect
                 highlightSection(target);
             }
         });
@@ -46,15 +65,6 @@ document.addEventListener('DOMContentLoaded', function () {
         section.classList.add('highlighted-section');
         setTimeout(() => {
             section.classList.remove('highlighted-section');
-        }, 2000); // Remove highlight after 2 seconds
+        }, 2000);
     }
-
-    // Sticky Navbar on Scroll
-    window.addEventListener('scroll', function () {
-        if (window.pageYOffset > hero.offsetHeight - scrollOffset) {
-            header.classList.add('sticky');
-        } else {
-            header.classList.remove('sticky');
-        }
-    });
 });
