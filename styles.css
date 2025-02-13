@@ -42,6 +42,7 @@ body {
 .nav-menu {
     list-style: none;
     display: flex;
+    transition: all 0.3s ease;
 }
 
 .nav-menu .nav-item {
@@ -53,6 +54,11 @@ body {
     color: #2d3436;
     font-weight: 500;
     padding: 10px;
+    transition: color 0.3s ease;
+}
+
+.nav-menu .nav-link:hover {
+    color: #3498db;
 }
 
 .hamburger {
@@ -71,6 +77,18 @@ body {
     width: 100%;
     border-radius: 3px;
     transition: all 0.3s ease;
+}
+
+.hamburger.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
 }
 
 @media (max-width: 768px) {
