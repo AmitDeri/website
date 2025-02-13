@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function () {
     navLinks.forEach(function(navLink) {
         navLink.addEventListener('click', function(e) {
             if (window.innerWidth < 768) {
-                e.preventDefault(); // Prevent default link behavior
+                e.preventDefault(); // Prevent default link behavior only on mobile
                 const dropdown = this.nextElementSibling;
 
                 // Toggle the clicked dropdown
@@ -133,22 +133,14 @@ document.addEventListener('DOMContentLoaded', function () {
                     dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
                 }
             }
+            // Do nothing on desktop
         });
     });
 
-    // Close dropdowns when clicking outside
-    document.addEventListener('click', function(e) {
-        if (window.innerWidth < 768) {
-            const isNavLink = e.target.matches('.nav-link');
-            const isDropdownItem = e.target.closest('.dropdown');
-            const isMenuToggle = e.target.closest('#mobile-menu');
-            if (!isNavLink && !isDropdownItem && !isMenuToggle) {
-                document.querySelectorAll('.dropdown').forEach(function(dd) {
-                    dd.style.display = 'none';
-                });
-                navMenu.classList.remove('active');
-                menuToggle.classList.remove('active');
-            }
-        }
+    // Prevent default action for links with href="#"
+    document.querySelectorAll('a[href="#"]').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+        });
     });
 });
